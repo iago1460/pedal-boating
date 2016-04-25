@@ -1,0 +1,10 @@
+<p>
+    {{ booking.name|title }} booked from {{ booking.start_time|date:'g:i a' }} until {{ booking.end_time|date:'g:i a' }} for {{ booking.number_of_people }} {{ booking.number_of_people|pluralize:"person,people" }}:
+</p>
+<p>
+    {% for boat in booking.boats.all %}
+        <button class="btn btn-sm btn-info" type="button" title="Boat in use by {{ booking.name|title }}">
+            <span class="glyphicon glyphicon-user"></span><span class="badge">{{ boat.seats }}</span>
+        </button>
+    {% endfor %}
+</p>

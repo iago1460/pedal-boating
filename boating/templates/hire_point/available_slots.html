@@ -1,0 +1,84 @@
+{% extends 'hire_point/base.html' %}
+{% load project_tags %}
+
+
+{% block content %}
+    <div class="col-md-6 col-sm-12">
+        <h1>Availability {{ today|date:'DATE_FORMAT' }}</h1>
+
+        <nav>
+            <ul class="pager">
+                <li class="previous"><a href="{{ previous_url }}"><span aria-hidden="true">&larr;</span> Previous</a></li>
+                <li class="next"><a href="{{ next_url }}">Next <span aria-hidden="true">&rarr;</span></a></li>
+            </ul>
+        </nav>
+
+        {% if slots %}
+            <h3>Select one of the available dates</h3>
+            <div class="list-group availability">
+                {% for slot in slots %}
+                    <a href="#" data-id="{{ slot.0 }}" class="list-group-item {% if not slot.2 %} disabled{% endif %}">
+                        {{ slot.1 }}
+                        <span class="boat-info">
+                            {% for boat in slot.3 %}
+                                <button class="btn btn-xs btn-success" type="button" title="You will be using this boat">
+                                    <span class="glyphicon glyphicon-user"></span><span class="badge">{{ boat.seats }}</span>
+                                </button>
+                            {% endfor %}
+                        </span>
+                     </a>
+                {% endfor %}
+            </div>
+            <nav>
+                <ul class="pager">
+                    <li class="previous"><a href="{{ previous_url }}"><span aria-hidden="true">&larr;</span> Previous</a></li>
+                    <li class="next"><a href="{{ next_url }}">Next <span aria-hidden="true">&rarr;</span></a></li>
+                </ul>
+            </nav>
+        {% else %}
+            <h3>Sorry, our hire point is closed today</h3>
+        {% endif %}
+
+        <form method="post" class="form">
+            {% csrf_token %}
+            {{ form }}
+        </form>
+    </div>
+
+
+    <div class="col-md-5 col-md-offset-1 col-sm-12">
+        <h1>Boats in this hire point</h1>
+        {% for boat in boats %}
+            <button class="btn btn-primary" type="button" title="{{ boat.seats }} seats in this boat">
+                <span class="glyphicon glyphicon-user"></span><span class="badge">{{ boat.seats }}</span>
+            </button>
+        {% empty %}
+            <h3>There are no boats</h3>
+        {% endfor %}
+        <h3>Current bookings today:</h3>
+        <ul>
+        {% for booking in bookings %}
+            <li>
+                {% include 'hire_point/snippets/booking_info.html' %}
+            </li>
+        {% empty %}
+            No bookings yet
+        {% endfor %}
+        </ul>
+
+    </div>
+{% endblock %}
+
+
+{% block extra_script %}
+    <script>
+        $( document ).ready(function() {
+            $(".availability a").click(function() {
+                $('#id_start_time').val($(this).data('id'));
+                if ($(this).hasClass('active')){
+                    $('.form').submit();
+                }
+            });
+        });
+    </script>
+{% endblock %}

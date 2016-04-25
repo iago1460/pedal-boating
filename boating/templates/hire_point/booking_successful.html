@@ -1,0 +1,12 @@
+{% extends 'hire_point/base.html' %}
+{% load bootstrap3 %}
+
+
+{% block content %}
+    <div class="col-md-6 col-sm-12">
+        <h1>Thank you for book with us!</h1>
+
+        <h3>Here are your details:</h3>
+        {% include 'hire_point/snippets/booking_info.html' %}
+    </div>
+{% endblock %}

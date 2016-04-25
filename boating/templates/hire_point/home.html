@@ -1,0 +1,18 @@
+{% extends 'hire_point/base.html' %}
+{% load bootstrap3 %}
+
+
+{% block content %}
+    <div class="col-md-6 col-sm-12">
+        <h1>Please fill the form</h1>
+        <form method="post" class="form">
+            {% csrf_token %}
+            {% bootstrap_form form %}
+            {% buttons %}
+                <button type="submit" class="btn btn-primary">
+                    {% bootstrap_icon "star" %} Submit
+                </button>
+            {% endbuttons %}
+        </form>
+    </div>
+{% endblock %}

@@ -1,0 +1,52 @@
+/*!
+ * Start Bootstrap - The Big Picture HTML Template (http://startbootstrap.com)
+ * Code licensed under the Apache License v2.0.
+ * For details, see http://www.apache.org/licenses/LICENSE-2.0.
+ */
+
+body {
+    margin-top: 50px;
+    margin-bottom: 50px;
+    background: none;
+}
+
+.full {
+    background: linear-gradient(
+            rgba(0, 0, 0, 0.45),
+            rgba(0, 0, 0, 0.45)
+    ), url(../images/background.jpg) no-repeat center top fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    color: white;
+}
+
+.container {
+    color: lightgrey;
+}
+
+.has-error .control-label,
+.has-error .help-block,
+.has-error .form-control-feedback {
+    color: #f39c12;
+}
+
+.has-success .control-label,
+.has-success .help-block,
+.has-success .form-control-feedback {
+    color: lightgrey;
+}
+
+.availability .list-group-item{
+    padding-bottom: 5px;
+    padding-top: 5px;
+}
+.availability .list-group-item .boat-info{
+    margin-left: 20px;
+}
+
+.availability .list-group-item.active:after {
+   content: "Click again to book";
+   float: right;
+}
