@@ -10,6 +10,7 @@ Do you want to try it?
 ----------------------
 
 Open a terminal and introduce the following commands::
+
     git clone https://github.com/iago1460/pedal-boating
     cd pedal-boating
     virtualenv --no-site-packages venv
